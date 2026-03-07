@@ -77,9 +77,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.fisherman.frensy.fun.signals"
+    namespace "com.fisherman.frensy.funsignals"
     defaultConfig {
-        applicationId "com.fisherman.frensy.fun.signals"
+        applicationId "com.fisherman.frensy.funsignals"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

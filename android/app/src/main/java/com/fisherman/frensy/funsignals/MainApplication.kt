@@ -1,4 +1,4 @@
-package com.fisherman.frensy.fun.signals
+package com.fisherman.frensy.funsignals
 
 import android.app.Application
 import com.facebook.react.PackageList
