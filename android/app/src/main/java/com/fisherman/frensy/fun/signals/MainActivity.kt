@@ -1,4 +1,4 @@
-package com.fishermanfrensyfunsignals
+package com.fisherman.frensy.fun.signals
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
