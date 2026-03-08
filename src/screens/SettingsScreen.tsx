@@ -197,14 +197,9 @@ export default function SettingsScreen({ navigation }: Props) {
                   ABOUT THE APP
                 </Text>
 
-                <Text style={[styles.aboutText, isTiny && styles.aboutTextTiny]}>
-                  {'"'}Fishing: Fun Fun Signals{'"'} is a relaxing and humorous app where you can
-                  interact with the world of fishermen, fish and rivers. Discover funny signals,
-                  create nicknames, read stories and exchange worms for fishing facts and tips. The
-                  app is designed to bring light, fun and curiosity to your day through simple and
-                  enjoyable interactions. Everything runs locally on your device with no accounts or
-                  data collection.
-                </Text>
+              <Text style={[styles.aboutText, isTiny && styles.aboutTextTiny]}>
+  This is a relaxing and humorous app where you can interact with the world of fishermen, fish and rivers. Discover funny signals, create playful nicknames, read light stories and exchange worms for interesting fishing facts and tips. The experience is designed to bring fun, curiosity and a positive mood to your day through simple and enjoyable interactions. Everything runs locally on your device with no accounts or data collection.
+</Text>
 
                 <Pressable
                   style={[
