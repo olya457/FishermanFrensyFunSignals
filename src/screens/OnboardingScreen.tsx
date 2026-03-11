@@ -18,10 +18,10 @@ import type { RootStackParamList } from '../navigation/types';
 type Props = NativeStackScreenProps<RootStackParamList, 'Onboarding'>;
 
 const BG = require('../assets/loader_bg.png');
-const IMG_1 = require('../assets/onboard_1.png');
-const IMG_2 = require('../assets/onboard_2.png');
-const IMG_3 = require('../assets/onboard_3.png');
-const IMG_4 = require('../assets/onboard_4.png');
+const IMG_1 = require('../assets/onbod_1.png');
+const IMG_2 = require('../assets/onbod_2.png');
+const IMG_3 = require('../assets/onbod_3.png');
+const IMG_4 = require('../assets/onbod_4.png');
 
 const SLIDES = [
   {
