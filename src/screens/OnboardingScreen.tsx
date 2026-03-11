@@ -9,7 +9,6 @@ import {
   useWindowDimensions,
   Animated,
   Easing,
-  Platform,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -70,6 +69,7 @@ export default function OnboardingScreen({ navigation }: Props) {
 
   const isSmallScreen = height <= 700;
   const isVerySmallScreen = height <= 640;
+  const isFirstSlide = index === 0;
 
   const slide = SLIDES[index];
 
@@ -190,23 +190,45 @@ export default function OnboardingScreen({ navigation }: Props) {
                 {slide.text}
               </Text>
 
-              <Pressable
+              <View
                 style={[
-                  styles.button,
-                  isSmallScreen && styles.buttonSmall,
-                  isVerySmallScreen && styles.buttonVerySmall,
+                  styles.buttonClip,
+                  isSmallScreen && styles.buttonClipSmall,
+                  isVerySmallScreen && styles.buttonClipVerySmall,
+                  isFirstSlide && styles.buttonClipFirstSlide,
+                  isFirstSlide &&
+                    isSmallScreen &&
+                    styles.buttonClipFirstSlideSmall,
+                  isFirstSlide &&
+                    isVerySmallScreen &&
+                    styles.buttonClipFirstSlideVerySmall,
                 ]}
-                onPress={handleNext}
               >
-                <Text
+                <Pressable
                   style={[
-                    styles.buttonText,
-                    isVerySmallScreen && styles.buttonTextVerySmall,
+                    styles.button,
+                    isSmallScreen && styles.buttonSmall,
+                    isVerySmallScreen && styles.buttonVerySmall,
+                    isFirstSlide && styles.buttonFirstSlide,
+                    isFirstSlide &&
+                      isSmallScreen &&
+                      styles.buttonFirstSlideSmall,
+                    isFirstSlide &&
+                      isVerySmallScreen &&
+                      styles.buttonFirstSlideVerySmall,
                   ]}
+                  onPress={handleNext}
                 >
-                  {slide.button}
-                </Text>
-              </Pressable>
+                  <Text
+                    style={[
+                      styles.buttonText,
+                      isVerySmallScreen && styles.buttonTextVerySmall,
+                    ]}
+                  >
+                    {slide.button}
+                  </Text>
+                </Pressable>
+              </View>
             </View>
           </Animated.View>
         </View>
@@ -320,8 +342,37 @@ const styles = StyleSheet.create({
     minHeight: 64,
   },
 
-  button: {
+  buttonClip: {
     marginTop: 16,
+    height: 46,
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+
+  buttonClipSmall: {
+    marginTop: 14,
+    height: 44,
+  },
+
+  buttonClipVerySmall: {
+    marginTop: 12,
+    height: 42,
+  },
+
+  buttonClipFirstSlide: {
+    height: 24,
+  },
+
+  buttonClipFirstSlideSmall: {
+    height: 22,
+  },
+
+  buttonClipFirstSlideVerySmall: {
+    height: 21,
+  },
+
+  button: {
     width: 134,
     height: 46,
     backgroundColor: '#26D221',
@@ -332,15 +383,25 @@ const styles = StyleSheet.create({
   },
 
   buttonSmall: {
-    marginTop: 14,
     width: 128,
     height: 44,
   },
 
   buttonVerySmall: {
-    marginTop: 12,
     width: 122,
     height: 42,
+  },
+
+  buttonFirstSlide: {
+    transform: [{ translateY: 10 }],
+  },
+
+  buttonFirstSlideSmall: {
+    transform: [{ translateY: 10 }],
+  },
+
+  buttonFirstSlideVerySmall: {
+    transform: [{ translateY: 0 }],
   },
 
   buttonText: {

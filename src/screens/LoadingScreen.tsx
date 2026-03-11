@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
 import { StyleSheet, View, ImageBackground } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { WebView } from 'react-native-webview';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../navigation/types';
@@ -9,34 +8,18 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Loading'>;
 
 const BG = require('../assets/loader_bg.png');
 
-const STORAGE_HAS_OPENED_APP = 'river_has_opened_app';
-
 export default function LoadingScreen({ navigation }: Props) {
   useEffect(() => {
     let isMounted = true;
 
     const run = async () => {
-      try {
-        await new Promise(resolve => setTimeout(resolve, 5000));
+      await new Promise(resolve => setTimeout(resolve, 5000));
 
-        const hasOpened = await AsyncStorage.getItem(STORAGE_HAS_OPENED_APP);
-
-        if (!isMounted) {
-          return;
-        }
-
-        if (!hasOpened) {
-          await AsyncStorage.setItem(STORAGE_HAS_OPENED_APP, '1');
-          navigation.replace('Onboarding');
-          return;
-        }
-
-        navigation.replace('Menu');
-      } catch (error) {
-        if (isMounted) {
-          navigation.replace('Menu');
-        }
+      if (!isMounted) {
+        return;
       }
+
+      navigation.replace('Onboarding');
     };
 
     run();
