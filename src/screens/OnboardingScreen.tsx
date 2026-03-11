@@ -69,7 +69,6 @@ export default function OnboardingScreen({ navigation }: Props) {
 
   const isSmallScreen = height <= 700;
   const isVerySmallScreen = height <= 640;
-  const isFirstSlide = index === 0;
 
   const slide = SLIDES[index];
 
@@ -121,7 +120,7 @@ export default function OnboardingScreen({ navigation }: Props) {
     };
   }, [width, height, isSmallScreen, isVerySmallScreen]);
 
-  const bottomMargin = Math.max(insets.bottom, 0) + 10;
+  const bottomMargin = Math.max(insets.bottom, 0) + 22;
   const topShiftDown = 20;
 
   const handleNext = () => {
@@ -157,7 +156,7 @@ export default function OnboardingScreen({ navigation }: Props) {
             style={[
               styles.bottomWrap,
               {
-                marginBottom: bottomMargin + 40,
+                marginBottom: bottomMargin,
                 opacity: fadeAnim,
                 transform: [{ translateY: cardTranslateY }, { scale: cardScale }],
               },
@@ -190,45 +189,23 @@ export default function OnboardingScreen({ navigation }: Props) {
                 {slide.text}
               </Text>
 
-              <View
+              <Pressable
                 style={[
-                  styles.buttonClip,
-                  isSmallScreen && styles.buttonClipSmall,
-                  isVerySmallScreen && styles.buttonClipVerySmall,
-                  isFirstSlide && styles.buttonClipFirstSlide,
-                  isFirstSlide &&
-                    isSmallScreen &&
-                    styles.buttonClipFirstSlideSmall,
-                  isFirstSlide &&
-                    isVerySmallScreen &&
-                    styles.buttonClipFirstSlideVerySmall,
+                  styles.button,
+                  isSmallScreen && styles.buttonSmall,
+                  isVerySmallScreen && styles.buttonVerySmall,
                 ]}
+                onPress={handleNext}
               >
-                <Pressable
+                <Text
                   style={[
-                    styles.button,
-                    isSmallScreen && styles.buttonSmall,
-                    isVerySmallScreen && styles.buttonVerySmall,
-                    isFirstSlide && styles.buttonFirstSlide,
-                    isFirstSlide &&
-                      isSmallScreen &&
-                      styles.buttonFirstSlideSmall,
-                    isFirstSlide &&
-                      isVerySmallScreen &&
-                      styles.buttonFirstSlideVerySmall,
+                    styles.buttonText,
+                    isVerySmallScreen && styles.buttonTextVerySmall,
                   ]}
-                  onPress={handleNext}
                 >
-                  <Text
-                    style={[
-                      styles.buttonText,
-                      isVerySmallScreen && styles.buttonTextVerySmall,
-                    ]}
-                  >
-                    {slide.button}
-                  </Text>
-                </Pressable>
-              </View>
+                  {slide.button}
+                </Text>
+              </Pressable>
             </View>
           </Animated.View>
         </View>
@@ -342,37 +319,8 @@ const styles = StyleSheet.create({
     minHeight: 64,
   },
 
-  buttonClip: {
-    marginTop: 16,
-    height: 46,
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-
-  buttonClipSmall: {
-    marginTop: 14,
-    height: 44,
-  },
-
-  buttonClipVerySmall: {
-    marginTop: 12,
-    height: 42,
-  },
-
-  buttonClipFirstSlide: {
-    height: 24,
-  },
-
-  buttonClipFirstSlideSmall: {
-    height: 22,
-  },
-
-  buttonClipFirstSlideVerySmall: {
-    height: 21,
-  },
-
   button: {
+    marginTop: 16,
     width: 134,
     height: 46,
     backgroundColor: '#26D221',
@@ -383,25 +331,15 @@ const styles = StyleSheet.create({
   },
 
   buttonSmall: {
+    marginTop: 14,
     width: 128,
     height: 44,
   },
 
   buttonVerySmall: {
+    marginTop: 12,
     width: 122,
     height: 42,
-  },
-
-  buttonFirstSlide: {
-    transform: [{ translateY: 10 }],
-  },
-
-  buttonFirstSlideSmall: {
-    transform: [{ translateY: 10 }],
-  },
-
-  buttonFirstSlideVerySmall: {
-    transform: [{ translateY: 0 }],
   },
 
   buttonText: {
