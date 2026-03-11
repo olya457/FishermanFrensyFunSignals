@@ -198,7 +198,7 @@ export default function SettingsScreen({ navigation }: Props) {
                 </Text>
 
                 <Text style={[styles.aboutText, isTiny && styles.aboutTextTiny]}>
-                  {'"'}Fishing: Fun Fun Signals{'"'} is a relaxing and humorous app where you can
+                  Is a humorous app where you can
                   interact with the world of fishermen, fish and rivers. Discover funny signals,
                   create nicknames, read stories and exchange worms for fishing facts and tips. The
                   app is designed to bring light, fun and curiosity to your day through simple and
